@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Albums for <%= @user.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>User</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @albums.each_with_index do |album, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= album.title %></td>
+        <td><%= @user.name %></td>
+        <td><%= link_to 'Destroy', user_album_path(@user, album), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<%= link_to 'Back', user_path(@user) %>
