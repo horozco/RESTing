@@ -17,7 +17,9 @@ class AlbumsController < ApplicationController
   private
 
   def set_album
-    @album = Album.find(params[:id])
+    @album = @user.albums.find(params[:id])
+  rescue ActiveResource::ResourceNotFound
+    redirect_to user_albums_path(@user), notice: 'Album not found.'
   end
 
   def set_user
