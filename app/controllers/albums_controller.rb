@@ -3,7 +3,8 @@ class AlbumsController < ApplicationController
   before_action :set_album, only: [:destroy]
 
   def index
-    @albums = @user.albums
+    # json-server does not support nested album routes so filter by user_id
+    @albums = Album.for_user(@user.id)
   end
 
   def destroy
